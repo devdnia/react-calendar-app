@@ -26,20 +26,20 @@ export const useAuthStore = () => {
         }
     }
 
-    const startRegister = async ({ name, email, password }) => {
+    const startRegister = async ({ name, email, password, password2 }) => {
 
         dispatch(onChecking());
 
         try {
 
-            const { data } = await calendarApi.post('/auth/new', { name, email, password });
+            const { data } = await calendarApi.post('/auth/new', { name, email, password, password2 });
             localStorage.setItem('token', data.token);
             localStorage.setItem('token-init-date', new Date().getTime());
             dispatch(onLogin({ name: data.name, uid: data.uid }));
 
         } catch (error) {
 
-            dispatch(onLogout(error.response.data?.msg || ``));
+            dispatch(onLogout(error.response.data?.msg || `Error en contraseñas`));
             setTimeout(() => {
                 dispatch(clearErrorMessage());
             }, 10);

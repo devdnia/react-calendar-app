@@ -30,6 +30,7 @@ export const LoginPage = () => {
 
     const registerSubmit = (e) => {
         e.preventDefault();
+
         if(registerPassword !== registerPassword2){
             Swal.fire({
                 title: 'Error en el registro',
@@ -38,7 +39,16 @@ export const LoginPage = () => {
             })
         }
 
-        startRegister({name: registerName, email: registerEmail, password: registerPassword});
+
+        if( registerName.length <= 1){
+            Swal.fire({
+                title: 'Error en el registro',
+                text: 'El nombre es muy corto',
+                icon: 'error',
+            })
+        }
+
+        startRegister({name: registerName, email: registerEmail, password: registerPassword, password2: registerPassword2});
 
     }
 
