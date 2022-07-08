@@ -76,10 +76,10 @@ export const useAuthStore = () => {
         errorMessage,
 
         // * Métodos
-        startLogin,
-        startRegister,
         checkAuthToken,
+        startLogin,
         startLougout,
+        startRegister,
         
     }
 
